@@ -1,5 +1,6 @@
 ﻿using DriveShareApp.Core.Data;
 using DriveShareApp.Core.DTOs;
+using DriveShareApp.Core.Repository;
 using DriveShareApp.Core.Service;
 using System;
 using System.Collections.Generic;
@@ -9,89 +10,95 @@ namespace DriveShareApp.Infra.Service
 {
     public class CarOwnerService : ICarOwnerService
     {
+        private readonly ICarOwnerRepository carOwnerRepository;
+
+        public CarOwnerService(ICarOwnerRepository carOwnerRepository)
+        {
+            this.carOwnerRepository = carOwnerRepository;
+        }
+
         public void acceptPassenger(Trippassengergp trippassengergp)
         {
-            throw new NotImplementedException();
+            carOwnerRepository.acceptPassenger(trippassengergp);
         }
 
         public void activeCarOwner(CarOwnerDTO carOwnerDTO)
         {
-            throw new NotImplementedException();
+            carOwnerRepository.activeCarOwner(carOwnerDTO);
         }
 
         public void activeTrip(Tripgp tripgp)
         {
-            throw new NotImplementedException();
+            carOwnerRepository.activeTrip(tripgp);
         }
 
         public void checkCarOwner(Passengergp passengergp)
         {
-            throw new NotImplementedException();
+            carOwnerRepository.checkCarOwner(passengergp);
         }
 
         public void createTrip(Tripgp tripgp)
         {
-            throw new NotImplementedException();
+            carOwnerRepository.createTrip(tripgp);
         }
 
         public void deleteCar(int id)
         {
-            throw new NotImplementedException();
-        }
+            carOwnerRepository.deleteCar(id);        }
 
         public void deleteTrip(int id)
         {
-            throw new NotImplementedException();
+            carOwnerRepository.deleteTrip(id);
         }
 
         public List<TripPasengerDTO> getAllAccept(TripPasengerDTO tripPasengerDTO)
         {
-            throw new NotImplementedException();
+           return carOwnerRepository.getAllAccept(tripPasengerDTO);
         }
 
         public List<Passengergp> getAllPassenger()
         {
-            throw new NotImplementedException();
+            return carOwnerRepository.getAllPassenger();
         }
 
         public List<TripPasengerDTO> getAllRequest(TripPasengerDTO tripPasengerDTO)
         {
-            throw new NotImplementedException();
+            return carOwnerRepository.getAllRequest(tripPasengerDTO);
         }
 
         public List<Tripgp> getAllTrip()
         {
-            throw new NotImplementedException();
+            return carOwnerRepository.getAllTrip();
         }
 
         public Passengergp getPassengerById(Passengergp passengergp)
         {
-            throw new NotImplementedException();
+            return carOwnerRepository.getPassengerById(passengergp);
         }
 
         public TripPasengerDTO getRequestById(TripPasengerDTO tripPasengerDTO)
         {
-            throw new NotImplementedException();
+            return carOwnerRepository.getRequestById(tripPasengerDTO);
         }
 
         public Tripgp getTripById(Tripgp tripgp)
         {
-            throw new NotImplementedException();
+            return carOwnerRepository.getTripById(tripgp);      
         }
 
         public List<Tripgp> getTripCarOwner(Tripgp tripgp)
         {
-            throw new NotImplementedException();
+            return carOwnerRepository.getTripCarOwner(tripgp);
         }
 
         public void updateCar(CarOwnerDTO carOwnerDTO)
         {
-            throw new NotImplementedException();
+            carOwnerRepository.updateCar(carOwnerDTO);
         }
 
         public void updateTrip(Tripgp tripgp)
         {
-            throw new NotImplementedException();
+            carOwnerRepository.updateTrip(tripgp);
         }
     }
 }
