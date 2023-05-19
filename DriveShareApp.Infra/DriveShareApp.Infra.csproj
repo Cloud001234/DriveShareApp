@@ -19,9 +19,4 @@
     <ProjectReference Include="..\DriveShareApp.Core\DriveShareApp.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Service\" />
-    <Folder Include="Repository\" />
-  </ItemGroup>
-
 </Project>

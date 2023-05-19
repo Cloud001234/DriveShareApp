@@ -1,5 +1,9 @@
 using DriveShareApp.Core.Common;
+using DriveShareApp.Core.Repository;
+using DriveShareApp.Core.Service;
 using DriveShareApp.Infra.Common;
+using DriveShareApp.Infra.Repository;
+using DriveShareApp.Infra.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +33,8 @@ namespace DriveShareApp
         {
             services.AddControllers();
             services.AddScoped<IDbContext, DbContext>();
+            services.AddScoped<ICarOwnerRepository, CarOwnerRepository>();
+            services.AddScoped<ICarOwnerService,CarOwnerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
