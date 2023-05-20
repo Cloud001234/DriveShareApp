@@ -34,6 +34,7 @@ namespace DriveShareApp
             services.AddControllers();
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<ICarOwnerRepository, CarOwnerRepository>();
+            services.AddScoped<IPassengerRepository, PassengerRepository>();
             services.AddScoped<ICarOwnerService,CarOwnerService>();
         }
 

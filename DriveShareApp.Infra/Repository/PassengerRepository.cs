@@ -14,111 +14,94 @@ namespace DriveShareApp.Infra.Repository
 	public class PassengerRepository : IPassengerRepository
 	{
         private readonly IDbContext dBContext;
-        public CarOwnerRepository(IDbContext dBContext)
+        public PassengerRepository(IDbContext dBContext)
         {
             this.dBContext = dBContext;
         }
 
-	
-
-		void DeleteRating(int id)
-        {
-			var parameter = new DynamicParameters();
-			parameter.Add("id",id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-			var result = dBContext.Connection.Query<CarOwnerDTO>("PASSENGER_PACKAGE.DELETERATING", parameter, commandType: CommandType.StoredProcedure);
-			dBContext.Connection.Dispose();
-		}
-
-		void CreateRating(Rategp rategp)
-        {
-			var parameter = new DynamicParameters();
-			parameter.Add("ratenum",rategp.Ratenumber, dbType: DbType.Int32, direction: ParameterDirection.Input);
-			parameter.Add("ratedes",rategp.Ratedesc, dbType: DbType.Int32, direction: ParameterDirection.Input);
-			var result = dBContext.Connection.Query<CarOwnerDTO>("PASSENGER_PACKAGE.CREATINGRATING", parameter, commandType: CommandType.StoredProcedure);
-			dBContext.Connection.Dispose();
-		}
-
-		Tripgp GetTripByid(int id)
-        {
-			var parameter = new DynamicParameters();
-			
-			p.Add("id", tripgp.Tripid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-			var result = dBContext.Connection.Query<Tripgp>("PASSENGER_PACKAGE.GETTRIPBYID", parameter, commandType: CommandType.StoredProcedure);
-			dBContext.Connection.Dispose();
-			return result.FirstOrDefault();
-
-
-		}
-		
-		List<Tripgp> GetAllTrip()
+        public List<Tripgp> GetAllTrip()
         {
 			IEnumerable<Tripgp> result = dBContext.Connection.Query<Tripgp>("PASSENGER_PACKAGE.GETALLTRIP", commandType: CommandType.StoredProcedure);
 			dBContext.Connection.Dispose();
 			return result.ToList();
 		}
-		
-		
-		void Request_A_Trip(PassengerDTO passengerDTO)
-		{
-			var parameter = new DynamicParameters();
-			parameter.Add("TTripid", passengerDTO.Tripid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-			parameter.Add("passid", passengerDTO.Passengerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-			var result = dBContext.Connection.Query<CarOwnerDTO>("PASSENGER_PACKAGE.REQUEST_A_TRIP", parameter, commandType: CommandType.StoredProcedure);
-			dBContext.Connection.Dispose();
 
-		}
-		
-		void Is_Start(PassengerDTO passengerDTO)
+		public void DeleteRating(int id)
         {
 			var parameter = new DynamicParameters();
-			rameter.Add("TTripid", passengerDTO.Tripid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-			parameter.Add("passid", passengerDTO.Passengerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-			var result = dBContext.Connection.Query<CarOwnerDTO>("PASSENGER_PACKAGE.REQUEST_A_TRIP", parameter, commandType: CommandType.StoredProcedure);
+			parameter.Add("id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+			var result = dBContext.Connection.Query<Rategp>("PASSENGER_PACKAGE.DELETERATING", parameter, commandType: CommandType.StoredProcedure);
 			dBContext.Connection.Dispose();
-
 		}
 
-
-		List<Tripgp> Search_A_Trip_by_Location(Tripgp tripgp)
+		public void CreateRating(Rategp rategp)
         {
 			var parameter = new DynamicParameters();
-			parameter.Add("startP", tripgp.Startpoint, dbType: DbType.String, direction: ParameterDirection.Input);
-			parameter.Add("endP", tripgp.Endpoint, dbType: DbType.String, direction: ParameterDirection.Input);
-			IEnumerable<TripPasengerDTO> result = dBContext.Connection.Query<TripPasengerDTO>("PASSENGER_PACKAGE.Search_A_Trip_by_Location", parameter, commandType: CommandType.StoredProcedure);
+			parameter.Add("ratenum", rategp.Ratenumber, dbType: DbType.Int32, direction: ParameterDirection.Input);
+			parameter.Add("ratedes", rategp.Ratedesc, dbType: DbType.Int32, direction: ParameterDirection.Input);
+			var result = dBContext.Connection.Query<Rategp>("PASSENGER_PACKAGE.CREATINGRATING", parameter, commandType: CommandType.StoredProcedure);
 			dBContext.Connection.Dispose();
-			return result.ToList();
 		}
 
-		List<Tripgp> Search_A_Trip_by_Price(Tripgp tripgp)
+		public Tripgp GetTripByid(int id)
+        {
+			var parameter = new DynamicParameters();
+			parameter.Add("id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+			var result = dBContext.Connection.Query<Tripgp>("PASSENGER_PACKAGE.GETTRIPBYID", parameter, commandType: CommandType.StoredProcedure);
+			dBContext.Connection.Dispose();
+			return result.FirstOrDefault();
+		}
+
+		public List<Tripgp> Search_A_Trip_by_Location(Tripgp tripgp)
         {
 			var parameter = new DynamicParameters();
 			parameter.Add("startP", tripgp.Startpoint, dbType: DbType.String, direction: ParameterDirection.Input);
 			parameter.Add("endP", tripgp.Endpoint, dbType: DbType.String, direction: ParameterDirection.Input);
-			parameter.Add("pir",tripgp.Price, dbType: DbType.decimal, direction: ParameterDirection.Input);
-			IEnumerable<TripPasengerDTO> result = dBContext.Connection.Query<TripPasengerDTO>("PASSENGER_PACKAGE.Search_A_Trip_by_Price", parameter, commandType: CommandType.StoredProcedure);
+			IEnumerable<Tripgp> result = dBContext.Connection.Query<Tripgp>("PASSENGER_PACKAGE.Search_A_Trip_by_Location", parameter, commandType: CommandType.StoredProcedure);
 			dBContext.Connection.Dispose();
 			return result.ToList();
 		}
 
-		List<Tripgp> Search_A_Trip_by_Date(Tripgp tripgp)
+		public List<Tripgp> Search_A_Trip_by_Price(Tripgp tripgp)
+        {
+			var parameter = new DynamicParameters();
+			parameter.Add("startP", tripgp.Startpoint, dbType: DbType.String, direction: ParameterDirection.Input);
+			parameter.Add("endP", tripgp.Endpoint, dbType: DbType.String, direction: ParameterDirection.Input);
+			parameter.Add("pir", tripgp.Rideprice, dbType: DbType.Double, direction: ParameterDirection.Input);
+			IEnumerable<Tripgp> result = dBContext.Connection.Query<Tripgp>("PASSENGER_PACKAGE.Search_A_Trip_by_Price", parameter, commandType: CommandType.StoredProcedure);
+			dBContext.Connection.Dispose();
+			return result.ToList();
+		}
+
+		public List<Tripgp> Search_A_Trip_by_Date(Tripgp tripgp)
         {
 			var parameter = new DynamicParameters();
 			parameter.Add("startP", tripgp.Startpoint, dbType: DbType.String, direction: ParameterDirection.Input);
 			parameter.Add("endP", tripgp.Endpoint, dbType: DbType.String, direction: ParameterDirection.Input);
 			parameter.Add("da", tripgp.Triptime, dbType: DbType.DateTime, direction: ParameterDirection.Input);
-			IEnumerable<TripPasengerDTO> result = dBContext.Connection.Query<TripPasengerDTO>("PASSENGER_PACKAGE.Search_A_Trip_by_Date", parameter, commandType: CommandType.StoredProcedure);
+			IEnumerable<Tripgp> result = dBContext.Connection.Query<Tripgp>("PASSENGER_PACKAGE.Search_A_Trip_by_Date", parameter, commandType: CommandType.StoredProcedure);
 			dBContext.Connection.Dispose();
 			return result.ToList();
 		}
 
+		public void Request_A_Trip(PassengerDTO passengerDTO)
+        {
+			var parameter = new DynamicParameters();
+			parameter.Add("TTripid", passengerDTO.Tripid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+			parameter.Add("passid", passengerDTO.Passengerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+			var result = dBContext.Connection.Query<PassengerDTO>("PASSENGER_PACKAGE.REQUEST_A_TRIP", parameter, commandType: CommandType.StoredProcedure);
+			dBContext.Connection.Dispose();
+		}
 
-
-
-
-
-
-
-	}
+		public void Is_Start(PassengerDTO passengerDTO)
+        {
+			var parameter = new DynamicParameters();
+			parameter.Add("TTripid", passengerDTO.Tripid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+			parameter.Add("passid", passengerDTO.Passengerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+			var result = dBContext.Connection.Query<PassengerDTO>("PASSENGER_PACKAGE.REQUEST_A_TRIP", parameter, commandType: CommandType.StoredProcedure);
+			dBContext.Connection.Dispose();
+		}
+    }
 
 
 
