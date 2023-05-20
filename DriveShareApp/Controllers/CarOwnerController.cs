@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DriveShareApp.Core.Data;
+using DriveShareApp.Core.Service;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +13,17 @@ namespace DriveShareApp.Controllers
     [ApiController]
     public class CarOwnerController : ControllerBase
     {
+        private readonly ICarOwnerService carOwnerService;
+
+        public CarOwnerController(ICarOwnerService carOwnerService)
+        {
+            this.carOwnerService = carOwnerService;
+        }
+
+        [HttpGet("getalltrip")]
+        public List<Tripgp> getAllTrip()
+        {
+            return carOwnerService.getAllTrip();
+        }
     }
 }
