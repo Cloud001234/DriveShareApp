@@ -35,7 +35,9 @@ namespace DriveShareApp
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<ICarOwnerRepository, CarOwnerRepository>();
             services.AddScoped<IPassengerRepository, PassengerRepository>();
+            services.AddScoped<IUserRepository,UserRepository>();
             services.AddScoped<ICarOwnerService,CarOwnerService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
