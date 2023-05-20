@@ -17,15 +17,15 @@ namespace DriveShareApp.Core.Service
 
 		Tripgp GetTripByid(int id);
 
-		Tripgp Search_A_Trip_by_Location(Tripgp tripgp);
+		List<Tripgp> Search_A_Trip_by_Location(Tripgp tripgp);
 
-		Tripgp Search_A_Trip_by_Price(Tripgp tripgp);
+		List<Tripgp> Search_A_Trip_by_Price(Tripgp tripgp);
 
-		Tripgp Search_A_Trip_by_Date(Tripgp tripgp);
+		List<Tripgp> Search_A_Trip_by_Date(Tripgp tripgp);
 
-		PassengerDTO Request_A_Trip(PassengerDTO passengerDTO);
+		void Request_A_Trip(PassengerDTO passengerDTO);
 
-		bool Is_Start(PassengerDTO passengerDTO);
+		void Is_Start(PassengerDTO passengerDTO);
 	}
 }
 
