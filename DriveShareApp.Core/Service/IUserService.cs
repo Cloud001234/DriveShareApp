@@ -10,6 +10,6 @@ namespace DriveShareApp.Core.Service
         void createUser(UserDTO userDTO);
         void updateUser(UserDTO userDTO);
         void deleteUser(int id);
-        UserDTO userLogin(UserDTO userDTO);
+        string userLogin(UserDTO userDTO);
     }
 }
