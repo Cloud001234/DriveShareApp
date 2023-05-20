@@ -1,8 +1,11 @@
 ﻿using DriveShareApp.Core.DTOs;
 using DriveShareApp.Core.Repository;
 using DriveShareApp.Core.Service;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
 namespace DriveShareApp.Infra.Service
@@ -30,9 +33,39 @@ namespace DriveShareApp.Infra.Service
             UserRepository.updateUser(userDTO);
         }
 
-        public UserDTO userLogin(UserDTO userDTO)
+        public string userLogin(UserDTO userDTO)
         {
-            throw new NotImplementedException();
+            var rusalt = UserRepository.userLogin(userDTO);
+
+            if (rusalt == null)
+            {
+                return null;
+            }
+            else
+            {
+                // secret key
+                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+                // signin credential
+                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+                var clamis = new List<Claim>
+                {
+                  new Claim("Passengerid",rusalt.Passengerid.ToString()),
+                  new Claim("carownerid",rusalt.Carownerid.ToString()),
+
+                };
+                // token options
+                var tokenOptions = new JwtSecurityToken
+                    (
+                     claims: clamis,
+                     expires: DateTime.Now.AddMonths(5),
+                     signingCredentials: signinCredentials
+                    );
+                //convert token to string
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+
+                return tokenString;
+            }
         }
     }
 }
