@@ -1,4 +1,5 @@
 ﻿using DriveShareApp.Core.Data;
+using DriveShareApp.Core.DTOs;
 using DriveShareApp.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,10 +27,10 @@ namespace DriveShareApp.Controllers
             return passengerService.GetAllTrip();
         }
 
-        [HttpDelete("deleterating/{id}")]
-        public void DeleteRating(int id)
+        [HttpDelete("deleterating")]
+        public void DeleteRating(Rategp rategp)
         {
-            passengerService.DeleteRating(id);
+            passengerService.DeleteRating(Convert.ToInt32(rategp.Rateid));
         }
 
         [HttpPost("createrating")]
@@ -41,10 +42,10 @@ namespace DriveShareApp.Controllers
             }
         }
 
-        [HttpGet("gettripbyid/{id}")]
-        public Tripgp GetTripById(int id)
+        [HttpPost("gettripbyid")]
+        public Tripgp GetTripById(Tripgp tripgp)
         {
-            return passengerService.GetTripByid(id);
+            return passengerService.GetTripByid(Convert.ToInt32(tripgp.Tripid));
         }
 
         [HttpPost("searchbylocation")]
@@ -81,11 +82,6 @@ namespace DriveShareApp.Controllers
                 passengerService.Is_Start(passengerDTO);
             }
         }
-
-
-
-
-
 
     }
 }

@@ -52,9 +52,9 @@ namespace DriveShareApp.Controllers
         }
 
         [HttpDelete("deletetrip")]
-        public void deleteTrip(int id)
+        public void deleteTrip(Tripgp tripgp)
         {
-            carOwnerService.deleteTrip(id);
+            carOwnerService.deleteTrip(Convert.ToInt32(tripgp.Tripid));
         }
 
         [HttpPost("gettripbyid")]
@@ -87,9 +87,9 @@ namespace DriveShareApp.Controllers
             carOwnerService.updateCar(carOwnerDTO);
         }
         [HttpDelete("deletecar")]
-        public void deleteCar(int id)
+        public void deleteCar(CarOwnerDTO carOwnerDTO)
         {
-            carOwnerService.deleteCar(id);
+            carOwnerService.deleteCar(Convert.ToInt32(carOwnerDTO.Passengerid));
         }
 
         [HttpPost("gettallrequest")]
