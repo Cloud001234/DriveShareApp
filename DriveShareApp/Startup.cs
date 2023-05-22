@@ -40,7 +40,9 @@ namespace DriveShareApp
             services.AddScoped<IPassengerRepository, PassengerRepository>();
             services.AddScoped<IUserRepository,UserRepository>();
             services.AddScoped<ICarOwnerService,CarOwnerService>();
+            services.AddScoped<IPassengerService, PassengerService>();
             services.AddScoped<IUserService, UserService>();
+            
             services.AddAuthentication(opt => {
                 opt.DefaultAuthenticateScheme =
                 JwtBearerDefaults.AuthenticationScheme;
