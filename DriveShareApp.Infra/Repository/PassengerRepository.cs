@@ -98,7 +98,7 @@ namespace DriveShareApp.Infra.Repository
 			var parameter = new DynamicParameters();
 			parameter.Add("TTripid", passengerDTO.Tripid, dbType: DbType.Int32, direction: ParameterDirection.Input);
 			parameter.Add("passid", passengerDTO.Passengerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-			var result = dBContext.Connection.Query<PassengerDTO>("PASSENGER_PACKAGE.REQUEST_A_TRIP", parameter, commandType: CommandType.StoredProcedure);
+			var result = dBContext.Connection.Query<PassengerDTO>("PASSENGER_PACKAGE.IS_START", parameter, commandType: CommandType.StoredProcedure);
 			dBContext.Connection.Dispose();
 		}
     }
