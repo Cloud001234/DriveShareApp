@@ -28,7 +28,7 @@ namespace DriveShareApp.Infra.Repository
             p.Add("useremail", userDTO.Email, dbType: DbType.String, ParameterDirection.Input);
             p.Add("userpass", userDTO.Password, dbType: DbType.String, ParameterDirection.Input);
             var result = dBContext.Connection.Query<UserDTO>("USERGP_PACKAGE.CREATEUSER", p, commandType: CommandType.StoredProcedure);
-            dBContext.Connection.Dispose();
+            
 
         }
 
