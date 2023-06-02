@@ -2,11 +2,14 @@
 using DriveShareApp.Core.Repository;
 using DriveShareApp.Core.Service;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+
 
 namespace DriveShareApp.Infra.Service
 {
@@ -39,7 +42,13 @@ namespace DriveShareApp.Infra.Service
 
             if (rusalt == null)
             {
-                return null;
+                var tokenKeyValue = new Dictionary<string, string>
+                {
+                    { "token", "0" }
+                };
+
+                string jsonResult = JsonConvert.SerializeObject(tokenKeyValue);
+                return jsonResult;
             }
             else
             {
@@ -63,8 +72,14 @@ namespace DriveShareApp.Infra.Service
                     );
                 //convert token to string
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                var tokenKeyValue = new Dictionary<string, string>
+                {
+                    { "token", tokenString }
+                };
 
-                return tokenString;
+                string jsonResult = JsonConvert.SerializeObject(tokenKeyValue);
+                return jsonResult;
+
             }
         }
 
