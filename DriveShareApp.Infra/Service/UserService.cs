@@ -38,8 +38,9 @@ namespace DriveShareApp.Infra.Service
 
         public string userLogin(UserDTO userDTO)
         {
+            
             var rusalt = UserRepository.userLogin(userDTO);
-
+            var cid = rusalt.Carownerid;
             if (rusalt == null)
             {
                 var tokenKeyValue = new Dictionary<string, string>
@@ -56,11 +57,16 @@ namespace DriveShareApp.Infra.Service
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 // signin credential
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                
+                if (rusalt.Carownerid == null)
+                {
+                    cid = 0;
+                }
 
                 var clamis = new List<Claim>
                 {
                   new Claim("Passengerid",rusalt.Passengerid.ToString()),
-                  new Claim("carownerid",rusalt.Carownerid.ToString()),
+                  new Claim("carownerid",cid.ToString()),
 
                 };
                 // token options
