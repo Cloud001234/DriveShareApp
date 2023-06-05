@@ -38,14 +38,13 @@ namespace DriveShareApp.Infra.Service
 
         public string userLogin(UserDTO userDTO)
         {
-            
             var rusalt = UserRepository.userLogin(userDTO);
-            var cid = rusalt.Carownerid;
+
             if (rusalt == null)
             {
                 var tokenKeyValue = new Dictionary<string, string>
                 {
-                    { "token", "0" }
+             { "token", "0" }
                 };
 
                 string jsonResult = JsonConvert.SerializeObject(tokenKeyValue);
@@ -57,35 +56,32 @@ namespace DriveShareApp.Infra.Service
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 // signin credential
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-                
-                if (rusalt.Carownerid == null)
-                {
-                    cid = 0;
-                }
 
-                var clamis = new List<Claim>
-                {
-                  new Claim("Passengerid",rusalt.Passengerid.ToString()),
-                  new Claim("carownerid",cid.ToString()),
+                var cid = rusalt.Carownerid != null ? rusalt.Carownerid.Value : 0;
 
-                };
+                var claims = new List<Claim>
+        {
+            new Claim("Passengerid", rusalt.Passengerid.ToString()),
+            new Claim("carownerid", cid.ToString()),
+        };
+
                 // token options
                 var tokenOptions = new JwtSecurityToken
-                    (
-                     claims: clamis,
-                     expires: DateTime.Now.AddMonths(5),
-                     signingCredentials: signinCredentials
-                    );
-                //convert token to string
+                (
+                    claims: claims,
+                    expires: DateTime.Now.AddMonths(5),
+                    signingCredentials: signinCredentials
+                );
+
+                // convert token to string
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
                 var tokenKeyValue = new Dictionary<string, string>
-                {
-                    { "token", tokenString }
-                };
+        {
+            { "token", tokenString }
+        };
 
                 string jsonResult = JsonConvert.SerializeObject(tokenKeyValue);
                 return jsonResult;
-
             }
         }
 
