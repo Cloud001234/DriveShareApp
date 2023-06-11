@@ -70,9 +70,9 @@ namespace DriveShareApp.Controllers
         }
 
         [HttpPost("checkcarowner")]
-        public void checkCarOwner(Passengergp passengergp)
+        public string checkCarOwner(Passengergp passengergp)
         {
-            carOwnerService.checkCarOwner(passengergp);
+            return carOwnerService.checkCarOwner(passengergp);
         }
 
         [HttpPost("activecarowner")]

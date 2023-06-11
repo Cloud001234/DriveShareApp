@@ -44,7 +44,7 @@ namespace DriveShareApp.Infra.Service
             {
                 var tokenKeyValue = new Dictionary<string, string>
                 {
-             { "token", "0" }
+                    { "token", "0" }
                 };
 
                 string jsonResult = JsonConvert.SerializeObject(tokenKeyValue);

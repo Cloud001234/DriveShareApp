@@ -2,6 +2,7 @@
 using DriveShareApp.Core.DTOs;
 using DriveShareApp.Core.Repository;
 using DriveShareApp.Core.Service;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,9 +34,29 @@ namespace DriveShareApp.Infra.Service
             carOwnerRepository.activeTrip(tripgp);
         }
 
-        public void checkCarOwner(Passengergp passengergp)
+        public string checkCarOwner(Passengergp passengergp)
         {
-            carOwnerRepository.checkCarOwner(passengergp);
+           var r=carOwnerRepository.checkCarOwner(passengergp);
+
+            if (r == null)
+            {
+                var tokenKeyValue = new Dictionary<string, int>
+                {
+                    { "carownerid", 0 }
+                };
+
+                string jsonResult = JsonConvert.SerializeObject(tokenKeyValue);
+                return jsonResult;
+            }
+            else {
+                var tokenKeyValue = new Dictionary<string, int>
+                {
+                    { "carownerid", (int)r }
+                };
+             string jsonResult = JsonConvert.SerializeObject(tokenKeyValue);
+                return jsonResult;
+            }
+
         }
 
         public void createTrip(Tripgp tripgp)

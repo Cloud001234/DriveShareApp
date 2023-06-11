@@ -50,12 +50,14 @@ namespace DriveShareApp.Infra.Repository
             dBContext.Connection.Dispose();
         }
 
-        public void checkCarOwner(Passengergp passengergp)
+        public decimal checkCarOwner(Passengergp passengergp)
         {
             var p = new DynamicParameters();
             p.Add("PID", passengergp.Passengerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = dBContext.Connection.Query<Passengergp>("CAROWNERGP_PACKAGE.CHECKCAROWNER", p, commandType: CommandType.StoredProcedure);
+            var result = dBContext.Connection.Query<decimal>("CAROWNERGP_PACKAGE.CHECKCAROWNER", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
             dBContext.Connection.Dispose();
+
+            return result;
         }
 
         public void createTrip(Tripgp tripgp)
@@ -195,5 +197,6 @@ namespace DriveShareApp.Infra.Repository
             var result = dBContext.Connection.Query<Tripgp>("CAROWNERGP_PACKAGE.UPDATETRIP", p, commandType: CommandType.StoredProcedure);
             dBContext.Connection.Dispose();
         }
+
     }
 }

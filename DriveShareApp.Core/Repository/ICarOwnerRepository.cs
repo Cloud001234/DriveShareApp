@@ -16,7 +16,7 @@ namespace DriveShareApp.Core.Repository
         List<Tripgp> getAllTrip();
         Tripgp getTripById(Tripgp tripgp);
         void activeTrip(Tripgp tripgp);
-        void checkCarOwner(Passengergp passengergp);
+        decimal checkCarOwner(Passengergp passengergp);
         //create car and carowner
         void activeCarOwner(CarOwnerDTO carOwnerDTO);
         //update car and carowner details
