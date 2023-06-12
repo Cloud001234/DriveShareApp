@@ -121,5 +121,11 @@ namespace DriveShareApp.Controllers
         {
             return carOwnerService.getTripCarOwner(tripgp);
         }
+
+        [HttpPost("getcar")]
+        public CarOwnerDTO getCar(CarOwnerDTO carOwnerDTO)
+        {
+            return carOwnerService.getCar(carOwnerDTO);
+        }
     }
 }

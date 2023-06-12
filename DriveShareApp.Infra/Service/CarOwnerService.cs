@@ -122,5 +122,10 @@ namespace DriveShareApp.Infra.Service
         {
             carOwnerRepository.updateTrip(tripgp);
         }
+
+        public CarOwnerDTO getCar(CarOwnerDTO carOwnerDTO)
+        {
+            return carOwnerRepository.getCar(carOwnerDTO);
+        }
     }
 }

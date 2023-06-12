@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -50,6 +51,24 @@ namespace DriveShareApp.Controllers
             {
                 return Ok(token);
             }
+        }
+        [HttpPost("uploadfile")]
+        public PassengerDTO UploadFile()
+        {
+            if (Request.Form.Files.Count > 0)
+            {
+                var file = Request.Form.Files[0];
+                var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                var fullPath = Path.Combine("C:\\Users\\User\\StudioProjects\\DriveShare\\images", fileName);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+                PassengerDTO item = new PassengerDTO();
+                item.Imagefile = fileName;
+                return item;
+            }
+            return null;
         }
     }
 }

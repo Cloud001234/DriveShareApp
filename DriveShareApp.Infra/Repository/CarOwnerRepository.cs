@@ -136,6 +136,15 @@ namespace DriveShareApp.Infra.Repository
             return result.FirstOrDefault();
         }
 
+        public CarOwnerDTO getCar(CarOwnerDTO carOwnerDTO)
+        {
+            var p = new DynamicParameters();
+            p.Add("COID", carOwnerDTO.Carownerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = dBContext.Connection.Query<CarOwnerDTO>("CAROWNERGP_PACKAGE.GETCAR", p, commandType: CommandType.StoredProcedure);
+            dBContext.Connection.Dispose();
+            return result.FirstOrDefault();
+
+        }
         public TripPasengerDTO getRequestById(TripPasengerDTO tripPasengerDTO)
         {
             var p = new DynamicParameters();

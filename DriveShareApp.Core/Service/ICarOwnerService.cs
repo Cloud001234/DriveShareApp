@@ -27,5 +27,6 @@ namespace DriveShareApp.Core.Service
         void acceptPassenger(Trippassengergp trippassengergp);
         TripPasengerDTO getRequestById(TripPasengerDTO tripPasengerDTO);
         List<Tripgp> getTripCarOwner(Tripgp tripgp);
+        CarOwnerDTO getCar(CarOwnerDTO carOwnerDTO);
     }
 }
