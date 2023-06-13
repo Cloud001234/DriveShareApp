@@ -190,6 +190,11 @@ namespace DriveShareApp.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("USERNAME");
 
+                entity.Property(e => e.Gender)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("GENDER");
+
                 entity.HasOne(d => d.Carowner)
                     .WithMany(p => p.Passengergps)
                     .HasForeignKey(d => d.Carownerid)

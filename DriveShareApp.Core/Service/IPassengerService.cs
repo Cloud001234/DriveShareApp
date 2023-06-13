@@ -26,6 +26,10 @@ namespace DriveShareApp.Core.Service
 		void Request_A_Trip(PassengerDTO passengerDTO);
 
 		void Is_Start(PassengerDTO passengerDTO);
+		void Is_Finish(PassengerDTO passengerDTO);
+
+		List<TripPassengerGPDTO> MyTrip(TripPassengerGPDTO tripPassengerGPDTO);
+
 	}
 }
 

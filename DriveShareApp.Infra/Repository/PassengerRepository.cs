@@ -101,7 +101,24 @@ namespace DriveShareApp.Infra.Repository
 			var result = dBContext.Connection.Query<PassengerDTO>("PASSENGER_PACKAGE.IS_START", parameter, commandType: CommandType.StoredProcedure);
 			dBContext.Connection.Dispose();
 		}
-    }
+		public void Is_Finish(PassengerDTO passengerDTO)
+		{
+			var parameter = new DynamicParameters();
+			parameter.Add("TTripid", passengerDTO.Tripid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+			parameter.Add("passid", passengerDTO.Passengerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+			var result = dBContext.Connection.Query<PassengerDTO>("PASSENGER_PACKAGE.Is_FINISH", parameter, commandType: CommandType.StoredProcedure);
+			dBContext.Connection.Dispose();
+		}
+		public List<TripPassengerGPDTO> MyTrip(TripPassengerGPDTO tripPassengerGPDTO)
+		{
+			var p = new DynamicParameters();
+			p.Add("PID", tripPassengerGPDTO.Passengerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+			IEnumerable<TripPassengerGPDTO> result = dBContext.Connection.Query<TripPassengerGPDTO>("PASSENGER_PACKAGE.MYTRIP", p, commandType: CommandType.StoredProcedure);
+			dBContext.Connection.Dispose();
+			return result.ToList();
+		}
+
+	}
 
 
 

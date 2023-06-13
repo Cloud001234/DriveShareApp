@@ -49,7 +49,13 @@ namespace DriveShareApp.Infra.Repository
             var result = dBContext.Connection.Query<Tripgp>("CAROWNERGP_PACKAGE.ACTIVETRIP", p, commandType: CommandType.StoredProcedure);
             dBContext.Connection.Dispose();
         }
-
+        public void finishTrip(Tripgp tripgp)
+        {
+            var p = new DynamicParameters();
+            p.Add("TID", tripgp.Tripid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = dBContext.Connection.Query<Tripgp>("CAROWNERGP_PACKAGE.FINISHTRIP", p, commandType: CommandType.StoredProcedure);
+            dBContext.Connection.Dispose();
+        }
         public decimal checkCarOwner(Passengergp passengergp)
         {
             var p = new DynamicParameters();
@@ -176,9 +182,9 @@ namespace DriveShareApp.Infra.Repository
         public void updateCar(CarOwnerDTO carOwnerDTO)
         {
             var p = new DynamicParameters();
-            p.Add("PID", carOwnerDTO.Passengerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("PID", carOwnerDTO.Passengerid, dbType: DbType.Decimal, direction: ParameterDirection.Input);
             p.Add("CT", carOwnerDTO.Cartype, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("CM", carOwnerDTO.Carmodel, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("CM", carOwnerDTO.Carmodel, dbType: DbType.Decimal, direction: ParameterDirection.Input);
             p.Add("CMM", carOwnerDTO.Carmmodel, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("CN", carOwnerDTO.Carnumber, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("IMAGE", carOwnerDTO.Imageliecnse, dbType: DbType.String, direction: ParameterDirection.Input);
@@ -190,15 +196,15 @@ namespace DriveShareApp.Infra.Repository
         public void updateTrip(Tripgp tripgp)
         {
             var p = new DynamicParameters();
-            p.Add("TID", tripgp.Startpoint, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("TID", tripgp.Startpoint, dbType: DbType.Decimal, direction: ParameterDirection.Input);
             p.Add("SP", tripgp.Startpoint, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("EP", tripgp.Endpoint, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("RP", tripgp.Rideprice, dbType: DbType.Double, direction: ParameterDirection.Input);
             p.Add("TT", tripgp.Triptime, dbType: DbType.DateTime, direction: ParameterDirection.Input);
-            p.Add("SN", tripgp.Seatnumber, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("SN", tripgp.Seatnumber, dbType: DbType.Decimal, direction: ParameterDirection.Input);
             p.Add("DS", tripgp.Descreption, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("IA", tripgp.Isactive, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("CID", tripgp.Carownerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("IA", tripgp.Isactive, dbType: DbType.Decimal, direction: ParameterDirection.Input);
+            p.Add("CID", tripgp.Carownerid, dbType: DbType.Decimal, direction: ParameterDirection.Input);
             p.Add("SP11", tripgp.Sp1, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("SP22", tripgp.Sp3, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("SP33", tripgp.Sp3, dbType: DbType.String, direction: ParameterDirection.Input);
@@ -206,6 +212,16 @@ namespace DriveShareApp.Infra.Repository
             var result = dBContext.Connection.Query<Tripgp>("CAROWNERGP_PACKAGE.UPDATETRIP", p, commandType: CommandType.StoredProcedure);
             dBContext.Connection.Dispose();
         }
+        public Passengergp getCarowner(Passengergp passengergp)
+        {
+            var p = new DynamicParameters();
+            p.Add("COID", passengergp.Carownerid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = dBContext.Connection.Query<Passengergp>("CAROWNERGP_PACKAGE.GETCAROWNER", p, commandType: CommandType.StoredProcedure);
+            dBContext.Connection.Dispose();
+            return result.FirstOrDefault();
+
+        }
+
 
     }
 }

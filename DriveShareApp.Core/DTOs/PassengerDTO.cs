@@ -14,7 +14,7 @@ namespace DriveShareApp.Core.DTOs
         public string Username { get; set; }
         public string Imagefile { get; set; }
         public decimal? Carownerid { get; set; }
-
+        public string Gender { get; set; }
 
         public decimal Tripid { get; set; }
         public string Startingpoint { get; set; }

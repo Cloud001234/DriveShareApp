@@ -33,6 +33,10 @@ namespace DriveShareApp.Infra.Service
         {
             carOwnerRepository.activeTrip(tripgp);
         }
+        public void finishTrip(Tripgp tripgp)
+        {
+           carOwnerRepository.finishTrip(tripgp);
+        }
 
         public string checkCarOwner(Passengergp passengergp)
         {
@@ -126,6 +130,10 @@ namespace DriveShareApp.Infra.Service
         public CarOwnerDTO getCar(CarOwnerDTO carOwnerDTO)
         {
             return carOwnerRepository.getCar(carOwnerDTO);
+        }
+        public Passengergp getCarowner(Passengergp passengergp)
+        {
+            return carOwnerRepository.getCarowner(passengergp);
         }
     }
 }

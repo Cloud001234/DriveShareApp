@@ -40,6 +40,10 @@ namespace DriveShareApp.Infra.Service
         {
             passengerRepository.Is_Start(passengerDTO);
         }
+        public void Is_Finish(PassengerDTO passengerDTO)
+        {
+            passengerRepository.Is_Finish(passengerDTO);
+        }
 
         public void Request_A_Trip(PassengerDTO passengerDTO)
         {
@@ -60,5 +64,10 @@ namespace DriveShareApp.Infra.Service
         {
             return passengerRepository.Search_A_Trip_by_Price(tripgp);
         }
+        public List<TripPassengerGPDTO> MyTrip(TripPassengerGPDTO tripPassengerGPDTO)
+        {
+            return passengerRepository.MyTrip(tripPassengerGPDTO);
+        }
+
     }
 }

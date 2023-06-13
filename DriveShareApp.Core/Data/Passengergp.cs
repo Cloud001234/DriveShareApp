@@ -20,6 +20,7 @@ namespace DriveShareApp.Core.Data
         public string Username { get; set; }
         public string Imagefile { get; set; }
         public decimal? Carownerid { get; set; }
+        public string Gender { get; set; }
 
         public virtual Carownergp Carowner { get; set; }
         public virtual ICollection<Logingp> Logingps { get; set; }

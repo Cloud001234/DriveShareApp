@@ -21,6 +21,13 @@ namespace DriveShareApp.Controllers
             this.carOwnerService = carOwnerService;
         }
 
+        [HttpPost("getcarowner")]
+
+        public Passengergp getCarowner(Passengergp passengergp)
+        {
+            return carOwnerService.getCarowner(passengergp);
+        }
+
         [HttpGet("getalltrip")]
         public List<Tripgp> getAllTrip()
         {
@@ -67,6 +74,12 @@ namespace DriveShareApp.Controllers
         public void activeTrip(Tripgp tripgp)
         {
             carOwnerService.activeTrip(tripgp);
+        }
+
+        [HttpPut("finishtrip")]
+        public void finishTrip(Tripgp tripgp)
+        {
+            carOwnerService.finishTrip(tripgp);
         }
 
         [HttpPost("checkcarowner")]

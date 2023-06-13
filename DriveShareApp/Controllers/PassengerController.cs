@@ -83,6 +83,20 @@ namespace DriveShareApp.Controllers
             }
         }
 
+        [HttpPost("isfinish")]
+        public void IsFinish([FromBody] PassengerDTO passengerDTO)
+        {
+            if (passengerDTO != null)
+            {
+                passengerService.Is_Finish(passengerDTO);
+            }
+        }
+        [HttpPost("mytrip")]
+        public List<TripPassengerGPDTO> MyTrip(TripPassengerGPDTO tripPassengerGPDTO)
+        {
+            return passengerService.MyTrip(tripPassengerGPDTO);
+        }
+
     }
 }
 

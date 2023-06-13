@@ -28,7 +28,9 @@ namespace DriveShareApp.Core.Repository
 
 		void Is_Start(PassengerDTO passengerDTO);
 
+		void Is_Finish(PassengerDTO passengerDTO);
 
+		List<TripPassengerGPDTO> MyTrip(TripPassengerGPDTO tripPassengerGPDTO);
 
 	}
 }
