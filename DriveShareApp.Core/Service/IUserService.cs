@@ -11,5 +11,7 @@ namespace DriveShareApp.Core.Service
         void updateUser(UserDTO userDTO);
         void deleteUser(int id);
         string userLogin(UserDTO userDTO);
+        void updatepass(UserDTO userDTO);
+
     }
 }

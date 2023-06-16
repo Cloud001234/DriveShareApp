@@ -66,5 +66,14 @@ namespace DriveShareApp.Infra.Repository
 
             return result.SingleOrDefault();
         }
+        public void updatepass(UserDTO userDTO)
+        {
+            var p = new DynamicParameters();
+            p.Add("id", userDTO.Passengerid, dbType: DbType.Decimal, ParameterDirection.Input);
+            p.Add("oldpass", userDTO.Password, dbType: DbType.String, ParameterDirection.Input);
+            p.Add("newpass", userDTO.Password, dbType: DbType.String, ParameterDirection.Input);
+            var result = dBContext.Connection.Query<UserDTO>("USERGP_PACKAGE.updatepass", p, commandType: CommandType.StoredProcedure);
+            dBContext.Connection.Dispose();
+        }
     }
 }

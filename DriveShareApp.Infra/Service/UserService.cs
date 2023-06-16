@@ -91,6 +91,10 @@ namespace DriveShareApp.Infra.Service
                 return jsonResult;
             }
         }
+        public void updatepass(UserDTO userDTO)
+        {
+            UserRepository.updatepass(userDTO);
+        }
 
     }
 }

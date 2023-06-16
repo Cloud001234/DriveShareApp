@@ -11,5 +11,7 @@ namespace DriveShareApp.Core.Repository
         void updateUser(UserDTO userDTO);
         void deleteUser(int id);
         UserDTO userLogin(UserDTO userDTO);
+
+        void updatepass(UserDTO userDTO);
     }
 }

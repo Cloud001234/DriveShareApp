@@ -70,5 +70,10 @@ namespace DriveShareApp.Controllers
             }
             return null;
         }
+        [HttpPut("updatepass")]
+        public void updatepass(UserDTO userDTO)
+        {
+            userService.updatepass(userDTO);
+        }
     }
 }
