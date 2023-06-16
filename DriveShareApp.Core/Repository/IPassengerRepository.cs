@@ -10,7 +10,7 @@ namespace DriveShareApp.Core.Repository
 	public interface IPassengerRepository
 	{
 
-		List<Tripgp> GetAllTrip();
+		List<PassengerTripCar> GetAllTrip();
 
 		void DeleteRating(int id);
 
@@ -18,7 +18,7 @@ namespace DriveShareApp.Core.Repository
 
 		Tripgp GetTripByid(int id);
 
-		List<Tripgp> Search_A_Trip_by_Location(Tripgp tripgp);
+		List<PassengerTripCar> Search_A_Trip_by_Location(PassengerTripCar tripgp);
 
 		List<Tripgp> Search_A_Trip_by_Price(Tripgp tripgp);
 

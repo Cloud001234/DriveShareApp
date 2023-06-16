@@ -196,7 +196,7 @@ namespace DriveShareApp.Infra.Repository
         public void updateTrip(Tripgp tripgp)
         {
             var p = new DynamicParameters();
-            p.Add("TID", tripgp.Startpoint, dbType: DbType.Decimal, direction: ParameterDirection.Input);
+            p.Add("TID", tripgp.Tripid, dbType: DbType.Decimal, direction: ParameterDirection.Input);
             p.Add("SP", tripgp.Startpoint, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("EP", tripgp.Endpoint, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("RP", tripgp.Rideprice, dbType: DbType.Double, direction: ParameterDirection.Input);

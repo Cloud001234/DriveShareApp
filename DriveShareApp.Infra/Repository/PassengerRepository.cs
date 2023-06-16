@@ -19,9 +19,9 @@ namespace DriveShareApp.Infra.Repository
             this.dBContext = dBContext;
         }
 
-        public List<Tripgp> GetAllTrip()
+        public List<PassengerTripCar> GetAllTrip()
         {
-			IEnumerable<Tripgp> result = dBContext.Connection.Query<Tripgp>("PASSENGER_PACKAGE.GETALLTRIP", commandType: CommandType.StoredProcedure);
+			IEnumerable<PassengerTripCar> result = dBContext.Connection.Query<PassengerTripCar>("PASSENGER_PACKAGE.GETALLTRIP", commandType: CommandType.StoredProcedure);
 			dBContext.Connection.Dispose();
 			return result.ToList();
 		}
@@ -52,12 +52,12 @@ namespace DriveShareApp.Infra.Repository
 			return result.FirstOrDefault();
 		}
 
-		public List<Tripgp> Search_A_Trip_by_Location(Tripgp tripgp)
+		public List<PassengerTripCar> Search_A_Trip_by_Location(PassengerTripCar tripgp)
         {
 			var parameter = new DynamicParameters();
 			parameter.Add("startP", tripgp.Startpoint, dbType: DbType.String, direction: ParameterDirection.Input);
 			parameter.Add("endP", tripgp.Endpoint, dbType: DbType.String, direction: ParameterDirection.Input);
-			IEnumerable<Tripgp> result = dBContext.Connection.Query<Tripgp>("PASSENGER_PACKAGE.Search_A_Trip_by_Location", parameter, commandType: CommandType.StoredProcedure);
+			IEnumerable<PassengerTripCar> result = dBContext.Connection.Query<PassengerTripCar>("PASSENGER_PACKAGE.Search_A_Trip_by_Location", parameter, commandType: CommandType.StoredProcedure);
 			dBContext.Connection.Dispose();
 			return result.ToList();
 		}

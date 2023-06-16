@@ -22,7 +22,7 @@ namespace DriveShareApp.Controllers
 		}
 
         [HttpGet("getalltrip")]
-        public List<Tripgp> GetAllTrip()
+        public List<PassengerTripCar> GetAllTrip()
         {
             return passengerService.GetAllTrip();
         }
@@ -49,7 +49,7 @@ namespace DriveShareApp.Controllers
         }
 
         [HttpPost("searchbylocation")]
-        public List<Tripgp> SearchTripByLocation([FromBody] Tripgp tripgp)
+        public List<PassengerTripCar> SearchTripByLocation([FromBody] PassengerTripCar tripgp)
         {
             return passengerService.Search_A_Trip_by_Location(tripgp);
         }

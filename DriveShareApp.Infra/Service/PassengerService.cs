@@ -26,7 +26,7 @@ namespace DriveShareApp.Infra.Service
             passengerRepository.DeleteRating(id);
         }
 
-        public List<Tripgp> GetAllTrip()
+        public List<PassengerTripCar> GetAllTrip()
         {
             return passengerRepository.GetAllTrip();
         }
@@ -55,7 +55,7 @@ namespace DriveShareApp.Infra.Service
             return passengerRepository.Search_A_Trip_by_Date(tripgp);
         }
 
-        public List<Tripgp> Search_A_Trip_by_Location(Tripgp tripgp)
+        public List<PassengerTripCar> Search_A_Trip_by_Location(PassengerTripCar tripgp)
         {
             return passengerRepository.Search_A_Trip_by_Location(tripgp);
         }
