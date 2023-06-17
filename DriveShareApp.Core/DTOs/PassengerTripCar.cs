@@ -16,6 +16,7 @@ namespace DriveShareApp.Core.DTOs
         public string Gender { get; set; }
 
 
+        public decimal Tripid { get; set; }
         public string Startpoint { get; set; }
         public string Endpoint { get; set; }
         public decimal? Rideprice { get; set; }
