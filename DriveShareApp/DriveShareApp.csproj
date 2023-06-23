@@ -20,5 +20,9 @@
     <ProjectReference Include="..\DriveShareApp.Infra\DriveShareApp.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 
 </Project>
