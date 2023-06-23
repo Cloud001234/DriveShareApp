@@ -59,7 +59,7 @@ namespace DriveShareApp.Controllers
             {
                 var file = Request.Form.Files[0];
                 var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-                var fullPath = Path.Combine("Images", fileName);
+                var fullPath = Path.Combine("C:\\Users\\Dell\\StudioProjects\\DriveShare\\images", fileName);
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
                     file.CopyTo(stream);
